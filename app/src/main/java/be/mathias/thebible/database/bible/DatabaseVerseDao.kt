@@ -8,10 +8,10 @@ import androidx.room.Query
 @Dao
 interface DatabaseVerseDao {
     @Query("SELECT * FROM verse WHERE book_name = :book ORDER BY verse_id DESC")
-    suspend fun getAllVersesFromBook(book: String): LiveData<List<DatabaseVerse>>
+    fun getAllVersesFromBook(book: String): LiveData<List<DatabaseVerse>>
 
-    @Query("SELECT * FROM verse WHERE verse_id = verse_id")
-    suspend fun get(verseId: Int)
+    @Query("SELECT * FROM verse WHERE verse_id = :verseId")
+    fun get(verseId: Int): LiveData<DatabaseVerse>
 
     @Insert
     suspend fun insert(verse: DatabaseVerse)
