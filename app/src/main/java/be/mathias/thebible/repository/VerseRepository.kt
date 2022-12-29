@@ -1,5 +1,6 @@
 package be.mathias.thebible.repository
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Transformations
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.database.bible.asDomain
@@ -14,17 +15,18 @@ class VerseRepository(private val database: BibleDatabase) {
         it.asDomain()
     }
 
+    val verse = MediatorLiveData<Verse>()
+
     suspend fun getVerse(bookName: String, chapter: Int, verse: Int): Verse? {
         try {
-            val verse = VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
+            val verseResponse = VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
 
-            database.databaseVerseDao.insertAll(verse.asDatabase())
+            database.databaseVerseDao.insertAll(verseResponse.asDatabase())
 
-            return Verse(verse.apiVerses[0].verseId, verse.apiVerses[0].bookName, verse.apiVerses[0].chapter, verse.apiVerses[0].text)
+            return Verse(verseResponse.apiVerses[0].verseId, verseResponse.apiVerses[0].bookName, verseResponse.apiVerses[0].chapter, verseResponse.apiVerses[0].text)
         }catch(e: Exception) {
             //TODO do something with exception
         }
-
         return null
     }
 }

@@ -16,4 +16,7 @@
     <string name="verse">Verse</string>
     <string name="search">Search</string>
     <string name="book">Book</string>
+    <string name="book_hint">book name of the bible verse</string>
+    <string name="chapter_hint">Chapter number of the selected book</string>
+    <string name="verse_hint">Verse number of the selected chapter</string>
 </resources>
