@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="be.mathias.thebible.ui.HomeFragment"
+        android:name="be.mathias.thebible.ui.home.HomeFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/home_first">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="be.mathias.thebible.ui.FavoritesFragment"
+        android:name="be.mathias.thebible.ui.favorites.FavoritesFragment"
         android:label="@string/favorites_fragment_label"
         tools:layout="@layout/fragment_favorites"/>
     <fragment
         android:id="@+id/searchVerseFragment"
-        android:name="be.mathias.thebible.ui.SearchVerse.SearchVerseFragment"
+        android:name="be.mathias.thebible.ui.searchVerse.SearchVerseFragment"
         android:label="@string/search_verse_fragment_label"
         tools:layout="@layout/fragment_search_verse"/>
 </navigation>

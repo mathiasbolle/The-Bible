@@ -1,4 +1,4 @@
-package be.mathias.thebible.ui
+package be.mathias.thebible.ui.favorites
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
