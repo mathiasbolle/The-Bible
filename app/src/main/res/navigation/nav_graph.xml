@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_favorites"/>
     <fragment
         android:id="@+id/searchVerseFragment"
-        android:name="be.mathias.thebible.ui.SearchVerseFragment"
+        android:name="be.mathias.thebible.ui.SearchVerse.SearchVerseFragment"
         android:label="@string/search_verse_fragment_label"
         tools:layout="@layout/fragment_search_verse"/>
 </navigation>

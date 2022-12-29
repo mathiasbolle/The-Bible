@@ -1,4 +1,4 @@
-package be.mathias.thebible.ui
+package be.mathias.thebible.ui.SearchVerse
 
 import android.os.Bundle
 import android.util.Log

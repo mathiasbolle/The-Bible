@@ -3,10 +3,13 @@ package be.mathias.thebible.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://bible-api.com/"
 
@@ -28,6 +31,9 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface VerseApiService {
+    @GET("{bookName} {chapter}:{verse}")
+    fun getSingleVerse(@Path(value = "bookName") bookName: String,
+                       @Path(value = "chapter") chapter: Int, @Path(value = "verse")verse: Int): Deferred<ApiVerseContainer>
 
 }
 
