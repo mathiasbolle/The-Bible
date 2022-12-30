@@ -11,7 +11,7 @@ import be.mathias.thebible.R
 import be.mathias.thebible.databinding.FragmentHomeBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass that defines the overview of the functionalities of the app.
  */
 class HomeFragment : Fragment() {
 

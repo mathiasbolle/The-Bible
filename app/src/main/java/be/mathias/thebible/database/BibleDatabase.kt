@@ -7,6 +7,12 @@ import androidx.room.RoomDatabase
 import be.mathias.thebible.database.bible.DatabaseVerse
 import be.mathias.thebible.database.bible.DatabaseVerseDao
 
+/**
+ * Defines The Bible Room database that contains:
+ * - Configurations such as *databaseVerseDao*
+ * - Singleton that handles the instance of the DB.
+ * @see RoomDatabase
+ */
 @Database(entities = [DatabaseVerse::class], version = 1, exportSchema = false)
 abstract class BibleDatabase : RoomDatabase() {
 

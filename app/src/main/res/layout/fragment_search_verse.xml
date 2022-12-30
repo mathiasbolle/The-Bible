@@ -91,5 +91,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:visibility="invisible"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:contentDescription="@string/fab_content_like"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Widget.Material3.FloatingActionButton.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -5,6 +5,10 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 
+/**
+ * Defines methods for interacting with the *verse* table.
+ * @see DatabaseVerse
+ */
 @Dao
 interface DatabaseVerseDao {
     @Query("SELECT * FROM verse ORDER BY chapter DESC")

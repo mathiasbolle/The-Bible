@@ -19,4 +19,6 @@
     <string name="book_hint">book name of the bible verse</string>
     <string name="chapter_hint">Chapter number of the selected book</string>
     <string name="verse_hint">Verse number of the selected chapter</string>
+    <string name="fab_content_like">Like the verse</string>
+    <string name="history_verses">History of verses</string>
 </resources>

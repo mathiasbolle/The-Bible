@@ -1,12 +1,18 @@
 package be.mathias.thebible.ui.searchVerse
 
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.getSystemServiceName
 import androidx.lifecycle.ViewModelProvider
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.databinding.FragmentSearchVerseBinding
@@ -49,7 +55,6 @@ class SearchVerseFragment : Fragment() {
         }
 
         binding.searchVerse.setOnClickListener {
-            Toast.makeText(context, binding.bookName.text, Toast.LENGTH_SHORT).show()
             //do request!
             viewModel.getVerse(
                 binding.bookName.text.toString(),
@@ -60,6 +65,14 @@ class SearchVerseFragment : Fragment() {
             viewModel.verse.observe(viewLifecycleOwner) {
                 binding.textVerse.text = it?.text
             }
+            hideKeyboard()
+
+            binding.fab.visibility = View.VISIBLE //sync this with request
         }
+    }
+
+
+    private fun hideKeyboard() {
+
     }
 }

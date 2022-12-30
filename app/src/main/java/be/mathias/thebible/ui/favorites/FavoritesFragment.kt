@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import be.mathias.thebible.databinding.FragmentFavoritesBinding
 
 /**
- * A simple [Fragment] subclass.
- * Use the [FavoritesFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * A simple [Fragment] subclass that list all the favorite verses from the user.
  */
 class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding

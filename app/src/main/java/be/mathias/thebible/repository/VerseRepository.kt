@@ -11,6 +11,11 @@ import be.mathias.thebible.network.asDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/**
+ * Isolate data from the rest of the app.
+ * Advantages such as caching.
+ * @see BibleDatabase
+ */
 class VerseRepository(private val database: BibleDatabase) {
 
     //this is for the history of all verses
@@ -18,6 +23,7 @@ class VerseRepository(private val database: BibleDatabase) {
         it.asDomain()
     }
 
+    //searchable verse
     val searchedVerse = MutableLiveData<Verse>(null)
 
     suspend fun getVerse(bookName: String, chapter: Int, verse: Int) {

@@ -11,6 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+//
 private const val BASE_URL = "https://bible-api.com/"
 
 private val moshi = Moshi.Builder()

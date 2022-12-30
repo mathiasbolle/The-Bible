@@ -8,7 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import be.mathias.thebible.databinding.VerseItemBinding
 import be.mathias.thebible.domain.Verse
 
-class VerseListAdapter() : ListAdapter<Verse, VerseListAdapter.ViewHolder>(SessionDiffCallback()) {
+/**
+ * Adapter implementation of the [ListAdapter] class
+ * @see ListAdapter
+ * @see VerseDiffCallback
+ */
+class VerseListAdapter() : ListAdapter<Verse, VerseListAdapter.ViewHolder>(VerseDiffCallback()) {
     lateinit var binding: VerseItemBinding
 
     inner class ViewHolder(val binding: VerseItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -29,7 +34,7 @@ class VerseListAdapter() : ListAdapter<Verse, VerseListAdapter.ViewHolder>(Sessi
     }
 }
 
-class SessionDiffCallback : DiffUtil.ItemCallback<Verse>() {
+class VerseDiffCallback : DiffUtil.ItemCallback<Verse>() {
     override fun areItemsTheSame(oldItem: Verse, newItem: Verse): Boolean {
         return oldItem.verseNumber == newItem.verseNumber && oldItem.chapter == newItem.chapter && oldItem.bookName.equals(
             newItem.bookName
