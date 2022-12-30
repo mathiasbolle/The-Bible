@@ -1,12 +1,15 @@
 package be.mathias.thebible.repository
 
-import androidx.lifecycle.MediatorLiveData
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.database.bible.asDomain
 import be.mathias.thebible.domain.Verse
 import be.mathias.thebible.network.VerseApi
 import be.mathias.thebible.network.asDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class VerseRepository(private val database: BibleDatabase) {
 
@@ -15,18 +18,21 @@ class VerseRepository(private val database: BibleDatabase) {
         it.asDomain()
     }
 
-    val verse = MediatorLiveData<Verse>()
+    val searchedVerse = MutableLiveData<Verse>()
 
-    suspend fun getVerse(bookName: String, chapter: Int, verse: Int): Verse? {
+    suspend fun getVerse(bookName: String, chapter: Int, verse: Int) {
         try {
-            val verseResponse = VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
+            withContext(Dispatchers.IO) {
+                val verseResponse = VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
 
-            database.databaseVerseDao.insertAll(verseResponse.asDatabase())
+                database.databaseVerseDao.insertAll(verseResponse.asDatabase())
 
-            return Verse(verseResponse.apiVerses[0].verseId, verseResponse.apiVerses[0].bookName, verseResponse.apiVerses[0].chapter, verseResponse.apiVerses[0].text)
+
+                Log.d("verseRepository", verseResponse.apiVerses[0].toString())
+                searchedVerse.value = Verse(0, "qsjdfoqsdjpf", 1, "qsiodjfoiqdsjio")
+            }
         }catch(e: Exception) {
             //TODO do something with exception
         }
-        return null
     }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.databinding.FragmentSearchVerseBinding
@@ -32,16 +31,12 @@ class SearchVerseFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSearchVerseBinding.inflate(inflater, container, false)
 
-
         val appContext = requireNotNull(this.activity).application
         val dataSource =
             BibleDatabase.getInstance(requireNotNull(this.activity).application).databaseVerseDao
 
         val viewModelFactory = SearchVerseFactory(dataSource, appContext)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchVerseViewModel::class.java)
-
-
-
 
         return binding.root
     }
@@ -60,11 +55,14 @@ class SearchVerseFragment : Fragment() {
                 binding.bookName.text.toString(),
                 binding.chapter.text.toString().toInt(),
                 binding.verse.text.toString().toInt()
-            ).observe(viewLifecycleOwner) {
+            )
 
+            viewModel.verse.observe(viewLifecycleOwner) {
+                Log.d("SearchVerseFragment", it.text)
+                it.let {
+                    Log.d("SearchVerseFragment", it.text)
+                }
             }
-
-
         }
     }
 }
