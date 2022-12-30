@@ -58,10 +58,7 @@ class SearchVerseFragment : Fragment() {
             )
 
             viewModel.verse.observe(viewLifecycleOwner) {
-                Log.d("SearchVerseFragment", it.text)
-                it.let {
-                    Log.d("SearchVerseFragment", it.text)
-                }
+                binding.textVerse.text = it?.text
             }
         }
     }

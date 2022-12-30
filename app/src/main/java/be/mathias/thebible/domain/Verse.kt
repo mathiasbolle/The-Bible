@@ -1,3 +1,3 @@
 package be.mathias.thebible.domain
 
-data class Verse(val verseId: Int, val bookName: String, val chapter: Int, val text: String)
+data class Verse(val verseNumber: Int, val bookName: String, val chapter: Int, val text: String)

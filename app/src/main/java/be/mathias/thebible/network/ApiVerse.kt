@@ -11,7 +11,7 @@ data class ApiVerseContainer(
 
 data class ApiVerse(
     @Json(name = "verse")
-    val verseId: Int,
+    val verseNumber: Int,
     @Json(name = "book_name")
     val bookName: String = "",
     @Json(name = "chapter")
@@ -23,14 +23,13 @@ data class ApiVerse(
 /**
  * Covert a network result into domain object (verse)
  */
-
 fun ApiVerseContainer.asDomain(): List<Verse> {
     return apiVerses.map {
         Verse(
-            verseId = it.verseId,
             bookName = it.bookName,
             chapter = it.chapter,
-            text = it.text
+            text = it.text,
+            verseNumber = it.verseNumber
         )
     }
 }
@@ -38,10 +37,10 @@ fun ApiVerseContainer.asDomain(): List<Verse> {
 fun ApiVerseContainer.asDatabase(): Array<DatabaseVerse> {
     return apiVerses.map {
         DatabaseVerse(
-            verseId = it.verseId,
             bookName = it.bookName,
             chapter = it.chapter,
-            text = it.text
+            text = it.text,
+            verseNumber = it.verseNumber
         )
     }.toTypedArray()
 }

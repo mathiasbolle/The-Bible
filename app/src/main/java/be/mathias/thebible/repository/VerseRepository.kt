@@ -18,21 +18,30 @@ class VerseRepository(private val database: BibleDatabase) {
         it.asDomain()
     }
 
-    val searchedVerse = MutableLiveData<Verse>()
+    val searchedVerse = MutableLiveData<Verse>(null)
 
     suspend fun getVerse(bookName: String, chapter: Int, verse: Int) {
         try {
-            withContext(Dispatchers.IO) {
-                val verseResponse = VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
+                val verseResponse =
+                    VerseApi.retrofitService.getSingleVerse(bookName, chapter, verse).await()
 
                 database.databaseVerseDao.insertAll(verseResponse.asDatabase())
 
 
                 Log.d("verseRepository", verseResponse.apiVerses[0].toString())
-                searchedVerse.value = Verse(0, "qsjdfoqsdjpf", 1, "qsiodjfoiqdsjio")
-            }
-        }catch(e: Exception) {
+                val verse = Verse(
+                    verseResponse.apiVerses[0].verseNumber,
+                    verseResponse.apiVerses[0].bookName,
+                    verseResponse.apiVerses[0].chapter,
+                    verseResponse.apiVerses[0].text
+                )
+                Log.d("verseRepository", verse.toString())
+
+                searchedVerse.value = verse
+                Log.d("verseRepository", searchedVerse.value.toString())
+        } catch (e: Exception) {
             //TODO do something with exception
+            e.message?.let { Log.e("VerseRepository", it) }
         }
     }
 }
