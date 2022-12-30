@@ -27,7 +27,6 @@ class VerseRepository(private val database: BibleDatabase) {
 
                 database.databaseVerseDao.insertAll(verseResponse.asDatabase())
 
-
                 Log.d("verseRepository", verseResponse.apiVerses[0].toString())
                 val verse = Verse(
                     verseResponse.apiVerses[0].verseNumber,
