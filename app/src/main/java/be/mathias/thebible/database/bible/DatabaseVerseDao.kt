@@ -3,6 +3,7 @@ package be.mathias.thebible.database.bible
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 /**
@@ -20,10 +21,10 @@ interface DatabaseVerseDao {
     @Query("SELECT * FROM verse WHERE verse_id = :verseId")
     fun get(verseId: Int): LiveData<DatabaseVerse>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(verse: DatabaseVerse)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(verses: Array<DatabaseVerse>)
 
     @Query("DELETE FROM verse")

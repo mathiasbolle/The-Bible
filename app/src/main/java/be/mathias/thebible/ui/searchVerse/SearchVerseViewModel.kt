@@ -12,7 +12,6 @@ class SearchVerseViewModel(val dao: DatabaseVerseDao, application: Application):
     private val database = BibleDatabase.getInstance(application)
     private val verseRepository = VerseRepository(database)
 
-    val verses = verseRepository.verses
     val verse = verseRepository.searchedVerse
 
     //TODO maybe extract this (parameter) to a class?
