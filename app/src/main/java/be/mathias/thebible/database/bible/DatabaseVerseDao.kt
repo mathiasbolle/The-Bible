@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 /**
  * Defines methods for interacting with the *verse* table.
@@ -15,8 +16,8 @@ interface DatabaseVerseDao {
     @Query("SELECT * FROM verse ORDER BY chapter DESC")
     fun getAll(): LiveData<List<DatabaseVerse>>
 
-    @Query("SELECT * FROM verse WHERE book_name = :book ORDER BY verse_id DESC")
-    fun getAllVersesFromBook(book: String): LiveData<List<DatabaseVerse>>
+    //@Query("SELECT * FROM verse WHERE book_name = :book ORDER BY verse_id DESC")
+    //fun getAllVersesFromBook(book: String): LiveData<List<DatabaseVerse>>
 
     @Query("SELECT * FROM verse WHERE verse_id = :verseId")
     fun get(verseId: Int): LiveData<DatabaseVerse>
@@ -30,6 +31,9 @@ interface DatabaseVerseDao {
     @Query("DELETE FROM verse")
     suspend fun clear()
 
-    @Query("SELECT COUNT(*) FROM verse")
-    suspend fun numberOfVerses(): Int
+    @Query("UPDATE verse SET is_favorite = 1 WHERE verse_id = :verseId")
+    suspend fun updateVerseMakeFavorite(verseId: Int)
+
+    //@Query("SELECT COUNT(*) FROM verse")
+    //suspend fun numberOfVerses(): Int
 }

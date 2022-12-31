@@ -24,8 +24,11 @@ data class DatabaseVerse(
     @ColumnInfo(name = "verse_number")
     val verseNumber: Int,
     val chapter: Int,
-    val text: String
-    )
+    val text: String,
+    ){
+    @ColumnInfo(name = "is_favorite")
+    var isFavorite: Boolean = false
+}
 
 /**
  * Converts a list of DatabaseVerse objects (objects that represents records in the Verse table)
