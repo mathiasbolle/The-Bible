@@ -49,4 +49,12 @@ class VerseRepository(private val database: BibleDatabase) {
             e.message?.let { Log.e("VerseRepository", it) }
         }
     }
+
+    suspend fun makeVerseFavorite(verseId: Int) {
+        try {
+
+        }catch(e: Exception) {
+            e.message?.let { Log.e("VerseRepository", it) }
+        }
+    }
 }

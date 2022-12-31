@@ -12,10 +12,12 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_FirstFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment" />
+            app:destination="@id/favoritesFragment"
+            app:enterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_FirstFragment_to_searchVerseFragment"
-            app:destination="@id/searchVerseFragment" />
+            app:destination="@id/searchVerseFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
