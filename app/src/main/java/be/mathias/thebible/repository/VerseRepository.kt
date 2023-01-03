@@ -38,7 +38,7 @@ class VerseRepository(private val database: BibleDatabase) {
                     verseResponse.apiVerses[0].verseNumber,
                     verseResponse.apiVerses[0].bookName,
                     verseResponse.apiVerses[0].chapter,
-                    verseResponse.apiVerses[0].text
+                    verseResponse.apiVerses[0].text,
                 )
                 Log.d("verseRepository", verse.toString())
 
@@ -50,8 +50,14 @@ class VerseRepository(private val database: BibleDatabase) {
         }
     }
 
+    fun getId(bookName: String, verseNumber: Int, chapter: Int): Int =
+        database.databaseVerseDao.getId(bookName, verseNumber, chapter)
+
+
+
     suspend fun makeVerseFavorite(verseId: Int) {
         try {
+            database.databaseVerseDao.updateVerseMakeFavorite(verseId)
 
         }catch(e: Exception) {
             e.message?.let { Log.e("VerseRepository", it) }

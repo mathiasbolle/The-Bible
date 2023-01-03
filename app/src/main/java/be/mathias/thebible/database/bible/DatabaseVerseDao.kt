@@ -34,6 +34,8 @@ interface DatabaseVerseDao {
     @Query("UPDATE verse SET is_favorite = 1 WHERE verse_id = :verseId")
     suspend fun updateVerseMakeFavorite(verseId: Int)
 
-    //@Query("SELECT COUNT(*) FROM verse")
-    //suspend fun numberOfVerses(): Int
+    // SELECT verse_id FROM verse WHERE book_name = "John" AND verse_number = 1 AND chapter = 2
+    @Query("SELECT verse_id FROM verse WHERE book_name = :bookName AND verse_number = :verseNumber AND chapter = :chapter")
+    fun getId(bookName: String, verseNumber: Int, chapter: Int): Int
+
 }

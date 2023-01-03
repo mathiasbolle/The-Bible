@@ -40,7 +40,7 @@ fun ApiVerseContainer.asDatabase(): Array<DatabaseVerse> {
             bookName = it.bookName,
             chapter = it.chapter,
             text = it.text,
-            verseNumber = it.verseNumber
+            verseNumber = it.verseNumber,
         )
     }.toTypedArray()
 }

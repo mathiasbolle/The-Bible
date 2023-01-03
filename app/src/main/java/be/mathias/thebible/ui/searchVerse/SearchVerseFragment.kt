@@ -50,7 +50,7 @@ class SearchVerseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.bookName.setOnItemClickListener { adapterView, _, i, l ->
+        binding.bookName.setOnItemClickListener { _, _, _, _ ->
             binding.searchVerse.isEnabled = true
         }
 
@@ -68,9 +68,13 @@ class SearchVerseFragment : Fragment() {
             hideKeyboard()
 
             binding.fab.visibility = View.VISIBLE //sync this with request
+
+            binding.fab.setOnClickListener {
+                val id = viewModel.id(binding.bookName.text.toString(), binding.verse.text.toString().toInt(), binding.chapter.text.toString().toInt())
+                viewModel.update(id)
+            }
         }
     }
-
 
     private fun hideKeyboard() {
 

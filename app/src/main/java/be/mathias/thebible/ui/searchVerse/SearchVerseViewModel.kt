@@ -8,7 +8,8 @@ import be.mathias.thebible.database.bible.DatabaseVerseDao
 import be.mathias.thebible.repository.VerseRepository
 import kotlinx.coroutines.launch
 
-class SearchVerseViewModel(val dao: DatabaseVerseDao, application: Application): AndroidViewModel(application) {
+class SearchVerseViewModel(val dao: DatabaseVerseDao, application: Application) :
+    AndroidViewModel(application) {
     private val database = BibleDatabase.getInstance(application)
     private val verseRepository = VerseRepository(database)
 
@@ -20,4 +21,13 @@ class SearchVerseViewModel(val dao: DatabaseVerseDao, application: Application):
             verseRepository.getVerse(bookName, chapter, verse)
         }
     }
+
+    fun update(verseId: Int) {
+        viewModelScope.launch {
+            verseRepository.makeVerseFavorite(verseId = verseId)
+        }
+    }
+
+    fun id(bookName: String, verseNumber: Int, chapter: Int): Int =
+        verseRepository.getId(bookName, verseNumber, chapter)
 }
