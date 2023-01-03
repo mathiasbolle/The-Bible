@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.getSystemServiceName
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.databinding.FragmentSearchVerseBinding
@@ -69,9 +70,13 @@ class SearchVerseFragment : Fragment() {
 
             binding.fab.visibility = View.VISIBLE //sync this with request
 
+            Log.d("SearchVerseFragment", "test")
             binding.fab.setOnClickListener {
+                Log.d("SearchVerseFragment", "test")
                 val id = viewModel.id(binding.bookName.text.toString(), binding.verse.text.toString().toInt(), binding.chapter.text.toString().toInt())
-                viewModel.update(id)
+                id.observe(viewLifecycleOwner) {
+                   viewModel.update(it) //update method from room database
+                }
             }
         }
     }

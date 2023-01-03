@@ -36,6 +36,6 @@ interface DatabaseVerseDao {
 
     // SELECT verse_id FROM verse WHERE book_name = "John" AND verse_number = 1 AND chapter = 2
     @Query("SELECT verse_id FROM verse WHERE book_name = :bookName AND verse_number = :verseNumber AND chapter = :chapter")
-    fun getId(bookName: String, verseNumber: Int, chapter: Int): Int
+    suspend fun getId(bookName: String, verseNumber: Int, chapter: Int): Int
 
 }

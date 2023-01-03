@@ -1,7 +1,10 @@
 package be.mathias.thebible.ui.searchVerse
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.database.bible.DatabaseVerseDao
@@ -28,6 +31,15 @@ class SearchVerseViewModel(val dao: DatabaseVerseDao, application: Application) 
         }
     }
 
-    fun id(bookName: String, verseNumber: Int, chapter: Int): Int =
-        verseRepository.getId(bookName, verseNumber, chapter)
+    fun id(bookName: String, verseNumber: Int, chapter: Int): LiveData<Int> {
+        val result = MutableLiveData<Int>()
+
+        viewModelScope.launch {
+            val id = verseRepository.getId(bookName, verseNumber, chapter)
+
+            result.value = id
+            Log.d("SearchVerseViewModel", id.toString())
+        }
+        return result;
+    }
 }

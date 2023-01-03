@@ -50,13 +50,14 @@ class VerseRepository(private val database: BibleDatabase) {
         }
     }
 
-    fun getId(bookName: String, verseNumber: Int, chapter: Int): Int =
+    suspend fun getId(bookName: String, verseNumber: Int, chapter: Int): Int =
         database.databaseVerseDao.getId(bookName, verseNumber, chapter)
 
 
 
     suspend fun makeVerseFavorite(verseId: Int) {
         try {
+            Log.d("VerseRepository", verseId.toString());
             database.databaseVerseDao.updateVerseMakeFavorite(verseId)
 
         }catch(e: Exception) {
