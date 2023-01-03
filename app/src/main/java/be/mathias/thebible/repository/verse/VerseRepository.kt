@@ -1,4 +1,4 @@
-package be.mathias.thebible.repository
+package be.mathias.thebible.repository.verse
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -8,8 +8,7 @@ import be.mathias.thebible.database.bible.asDomain
 import be.mathias.thebible.domain.Verse
 import be.mathias.thebible.network.VerseApi
 import be.mathias.thebible.network.asDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import be.mathias.thebible.ui.VerseApiStatus
 
 /**
  * Isolate data from the rest of the app.
@@ -49,7 +48,6 @@ class VerseRepository(private val database: BibleDatabase) {
                 searchedVerse.value = verse
                 Log.d("verseRepository", searchedVerse.value.toString())
         } catch (e: Exception) {
-            //TODO do something with exception
             e.message?.let { Log.e("VerseRepository", it) }
         }
     }

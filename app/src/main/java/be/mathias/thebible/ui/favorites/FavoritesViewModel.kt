@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import be.mathias.thebible.database.BibleDatabase
 import be.mathias.thebible.database.bible.DatabaseVerseDao
-import be.mathias.thebible.repository.VerseRepository
+import be.mathias.thebible.repository.verse.VerseRepository
 
 class FavoritesViewModel(val dao: DatabaseVerseDao, application: Application): AndroidViewModel(application) {
     private val database = BibleDatabase.getInstance(application)
