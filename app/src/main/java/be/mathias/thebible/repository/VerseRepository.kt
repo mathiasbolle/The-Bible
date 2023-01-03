@@ -23,6 +23,10 @@ class VerseRepository(private val database: BibleDatabase) {
         it.asDomain()
     }
 
+    val favorites = Transformations.map(database.databaseVerseDao.getFavorites()) {
+        it.asDomain()
+    }
+
     //searchable verse
     val searchedVerse = MutableLiveData<Verse>(null)
 

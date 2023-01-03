@@ -16,8 +16,8 @@ interface DatabaseVerseDao {
     @Query("SELECT * FROM verse ORDER BY chapter DESC")
     fun getAll(): LiveData<List<DatabaseVerse>>
 
-    //@Query("SELECT * FROM verse WHERE book_name = :book ORDER BY verse_id DESC")
-    //fun getAllVersesFromBook(book: String): LiveData<List<DatabaseVerse>>
+    @Query("SELECT * FROM verse WHERE is_favorite = 1 ORDER BY chapter DESC")
+    fun getFavorites(): LiveData<List<DatabaseVerse>>
 
     @Query("SELECT * FROM verse WHERE verse_id = :verseId")
     fun get(verseId: Int): LiveData<DatabaseVerse>
