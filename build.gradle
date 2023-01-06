@@ -2,6 +2,11 @@
 //dependencies {
 //    classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
 //}
+buildscript {
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.20"
+    }
+}
 plugins {
     id 'com.android.application' version '7.3.0' apply false
     id 'com.android.library' version '7.3.0' apply false

@@ -3,11 +3,28 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.dokka'
 }
+
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.dokka'
 
 android {
     namespace 'be.mathias.thebible'
     compileSdk 33
+
+    dokkaHtml {
+        dokkaSourceSets {
+            moduleName = "Bible App Documentation"
+            named("main") {
+                exclude "res/drawable**"
+                packageOptions {
+                    all().reportUndocumented = true
+                }
+            }
+        }
+    }
+
 
     defaultConfig {
         applicationId "be.mathias.thebible"
@@ -64,6 +81,8 @@ dependencies {
     //Retrofit with coroutines
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 
+    //dokka
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
 
 
     implementation 'androidx.core:core-ktx:1.9.0'
