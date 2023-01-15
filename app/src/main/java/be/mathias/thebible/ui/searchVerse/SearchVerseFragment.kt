@@ -75,7 +75,7 @@ class SearchVerseFragment : Fragment() {
 
             viewModel.status.observe(viewLifecycleOwner) {
                 if (it == VerseApiStatus.DONE) {
-                    binding.fab.visibility = View.VISIBLE //sync this with request
+                    binding.fab.visibility = View.VISIBLE
                     hideKeyboard()
                 }
             }
