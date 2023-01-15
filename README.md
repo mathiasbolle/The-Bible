@@ -10,6 +10,7 @@ The app contains the following technologies:
 - Espresso testing
 - Store data in Room database (with posibility of caching - Repository);
 
+This android app requires NO authentication.
 
 ## Documentation
 ```shell
