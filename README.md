@@ -8,12 +8,16 @@ The app contains the following technologies:
 - LiveData;
 - Navigation between fragments;
 - Espresso testing
-- store data in Room database (with posibility of caching - Repository);
+- Store data in Room database (with posibility of caching - Repository);
 
 
-## Generate documentation
+## Documentation
 ```shell
 ./gradlew dokkaHtml
 ```
-## Screenshots of the app
-/
+## Screenshots
+<div float="left">
+  <img src="https://user-images.githubusercontent.com/79169737/212564069-1e9dc9a2-5e83-49f9-9714-aa3c11d6bc7e.png" style="width: 300px;"/>
+  <img src="https://user-images.githubusercontent.com/79169737/212564031-ded8a621-6c59-4cb9-a34f-cc56ce20c88f.png" style="width: 300px;"/>
+  <img src="https://user-images.githubusercontent.com/79169737/212564088-aaa13467-977e-496b-a24b-86ce5162da58.png" style="width: 300px;"/>
+</div>
